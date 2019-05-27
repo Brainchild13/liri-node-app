@@ -136,12 +136,22 @@ if(process.argv[2] === "concert-this") {
           }
           artistArray.push(result);
           console.log(artistArray);
+
+            //adds text to log.txt
+        fs.appendFile('log.txt', songData.artists[0].name);
+        fs.appendFile('log.txt', songData.name);
+        fs.appendFile('log.txt', songData.preview_url);
+        fs.appendFile('log.txt', songData.album.name);
         }
       })
     } else if(process.argv[2] === "movie-this") {
       var movieName = process.argv[3];
       if(movieName === undefined) {
         movieName = "Mr. Nobody";
+
+        //adds text to log.txt
+      fs.appendFile('log.txt', "If you haven't watched 'Mr. Nobody,' then you should: http://www.imdb.com/title/tt0485947/");
+      fs.appendFile('log.txt', "It's on Netflix!");
       }
       request('http://www.omdbapi.com/?t=remember+the+titans&y=&plot=short&apikey=trilogy=' + process.argv[3], function(error, response, body){
       var result = JSON.parse(body);
@@ -153,6 +163,17 @@ if(process.argv[2] === "concert-this") {
       console.log("Language: " + result.Language);
       console.log("Movie Plot: " + result.Plot);
       console.log("Actors: " + result.Actors);
+
+      //adds text to log.txt
+      fs.appendFile('log.txt', "Title: " + body.Title);
+      fs.appendFile('log.txt', "Release Year: " + body.Year);
+      fs.appendFile('log.txt', "IMdB Rating: " + body.imdbRating);
+      fs.appendFile('log.txt', "Country: " + body.Country);
+      fs.appendFile('log.txt', "Language: " + body.Language);
+      fs.appendFile('log.txt', "Plot: " + body.Plot);
+      fs.appendFile('log.txt', "Actors: " + body.Actors);
+      fs.appendFile('log.txt', "Rotten Tomatoes Rating: " + body.tomatoRating);
+      fs.appendFile('log.txt', "Rotten Tomatoes URL: " + body.tomatoURL);
       })
     } else if (process.argv[2] === "do-what-it-says") {
       fs.readFile("random.txt", "utf8", function(error, data) {
