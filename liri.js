@@ -176,7 +176,7 @@ if(process.argv[2] === "concert-this") {
 
 // This block of code will create a file called "log.txt".
 
-fs.writeFile("log.txt", dataArr, function(err) {
+  fs.writeFile("log.txt", dataArr, function(err) {
 
   // If the code experiences any errors it will log the error to the console.
   if (err) {
